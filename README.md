@@ -31,7 +31,7 @@ Save and Document Results:
 Capture the waveform output and include the results in your report for verification.
 
 ## Verilog Code:
-### Blocking
+### Blocking 
 ```
 `timescale 1ns/1ps
 module swap(a,b,c,clk,aout,bout,cout);
@@ -63,8 +63,37 @@ end
 
 endmodule
 ```
+### Blocking Using same variable
+```
+`timescale 1ns/1ps
+module blockingusingsamevar;
+reg [3:0] a, b, c;
+initial begin
+  a=4'd8;
+  b=4'd7;
+  c=4'd6;
+  a=b; 
+  b=c; 
+  c=a; 
+end
+endmodule
+```
+### Non-Blocking Using same variable
+```
+`timescale 1ns/1ps
+module nonblockingusingsamevar;
+reg [3:0] a, b, c;
+initial begin
+  a=4'd8;
+  b=4'd7;
+  c=4'd6;
+  a<=b; 
+  b<=c; 
+  c<=a; 
+end
+endmodule
+```
 ### Testbench for Swapping Three Numbers:
-
 ```
 `timescale 1ns / 1ps
 
@@ -112,11 +141,16 @@ endmodule
 ```
 ## OUTPUT
 ### Blocking
-![Screenshot 2025-04-12 134931](https://github.com/user-attachments/assets/1a24f7e7-1b21-4263-8a02-772f908adcf6)
+![Screenshot 2025-04-12 134931](https://github.com/user-attachments/assets/a40059bb-b611-4769-8da2-af186b13c21a)
 
 ### Non-Blocking
-![Screenshot 2025-04-12 134611](https://github.com/user-attachments/assets/a76aa41c-9634-4df2-af0e-47b973817b77)
+![Screenshot 2025-04-12 134611](https://github.com/user-attachments/assets/ff0b22da-18ad-4586-86cd-a013f19f4b44)
 
+### Blocking Using same variable
+![Screenshot 2025-04-12 141556](https://github.com/user-attachments/assets/bd89c316-e0aa-4299-9e0f-251b059d0ec1)
+
+### Non Blocking Using same variable
+![Screenshot 2025-04-12 142347](https://github.com/user-attachments/assets/0291e158-c469-4368-9d19-804a74dd1e26)
 
 ## Conclusion
 In this experiment, a Verilog HDL code for swapping three numbers was designed and successfully simulated. The testbench verified the swapping operation, showing that the values of three input numbers (a, b, and c) were swapped correctly without the use of temporary variables. This experiment demonstrated the effectiveness of Verilog in implementing logical operations and control mechanisms such as swapping values. The simulation results confirm the correct functionality of the design.
