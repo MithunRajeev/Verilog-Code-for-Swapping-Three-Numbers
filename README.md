@@ -141,7 +141,7 @@ endmodule
 ```
 ## OUTPUT
 ### Blocking
-![Screenshot 2025-04-12 134931](https://github.com/user-attachments/assets/a40059bb-b611-4769-8da2-af186b13c21a)
+![Screenshot 2025-04-12 144353](https://github.com/user-attachments/assets/3042fbb3-7540-49ce-8da3-8ea9dce925ad)
 
 ### Non-Blocking
 ![Screenshot 2025-04-12 134611](https://github.com/user-attachments/assets/ff0b22da-18ad-4586-86cd-a013f19f4b44)
