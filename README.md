@@ -34,7 +34,7 @@ Capture the waveform output and include the results in your report for verificat
 ### Blocking 
 ```
 `timescale 1ns/1ps
-module swap(a,b,c,clk,aout,bout,cout);
+module swap_blocking(a,b,c,clk,aout,bout,cout);
 input [3:0]a,b,c;
 output reg[3:0] aout,bout,cout;
 input clk;
@@ -49,26 +49,26 @@ endmodule
 ### Non-Blocking
 ```
 `timescale 1ns/1ps
-module swapnonblocking(
+module swap_nonblocking(
   input [3:0] a, b, c,
   input clk,
   output reg [3:0] aout, bout, cout
 );
-
 always @(posedge clk) begin
   aout <= b;
   bout <= c;
   cout <= a;
 end
-
 endmodule
 ```
 ### Blocking Using same variable
 ```
 `timescale 1ns/1ps
-module blockingusingsamevar;
-reg [3:0] a, b, c;
-initial begin
+module block_samevariable(
+input clk,
+output reg [3:0] a, b, c
+);
+ always@(posedge clk) begin
   a=4'd8;
   b=4'd7;
   c=4'd6;
@@ -81,9 +81,11 @@ endmodule
 ### Non-Blocking Using same variable
 ```
 `timescale 1ns/1ps
-module nonblockingusingsamevar;
-reg [3:0] a, b, c;
-initial begin
+module nonblocking_samevariable(
+input clk,
+output reg [3:0] a, b, c
+);
+always@(posedge clk) begin
   a=4'd8;
   b=4'd7;
   c=4'd6;
