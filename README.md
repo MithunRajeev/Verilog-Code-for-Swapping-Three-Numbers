@@ -34,7 +34,7 @@ Capture the waveform output and include the results in your report for verificat
 ### Blocking 
 ```
 `timescale 1ns/1ps
-module swap_blocking(a,b,c,clk,aout,bout,cout);
+module swap_block(a,b,c,clk,aout,bout,cout);
 input [3:0]a,b,c;
 output reg[3:0] aout,bout,cout;
 input clk;
@@ -49,50 +49,58 @@ endmodule
 ### Non-Blocking
 ```
 `timescale 1ns/1ps
-module swap_nonblocking(
+module swap_non_block(
   input [3:0] a, b, c,
   input clk,
   output reg [3:0] aout, bout, cout
 );
+
 always @(posedge clk) begin
   aout <= b;
   bout <= c;
   cout <= a;
 end
+
 endmodule
 ```
 ### Blocking Using same variable
 ```
 `timescale 1ns/1ps
-module block_samevariable(
-input clk,
-output reg [3:0] a, b, c
-);
- always@(posedge clk) begin
-  a=4'd8;
-  b=4'd7;
-  c=4'd6;
-  a=b; 
-  b=c; 
-  c=a; 
-end
+module block_samevariable;
+  reg clk;
+  reg [3:0] a, b, c;
+  initial clk = 0;
+  always #5 clk = ~clk;
+  initial begin
+    a = 4'd8;
+    b = 4'd7;
+    c = 4'd6;
+  end
+  always @(posedge clk) begin
+    a = b;
+    b = c;
+    c = a;
+  end
 endmodule
 ```
 ### Non-Blocking Using same variable
 ```
 `timescale 1ns/1ps
-module nonblocking_samevariable(
-input clk,
-output reg [3:0] a, b, c
-);
-always@(posedge clk) begin
-  a=4'd8;
-  b=4'd7;
-  c=4'd6;
-  a<=b; 
-  b<=c; 
-  c<=a; 
-end
+module non_block_samevariable;
+  reg clk;
+  reg [3:0] a, b, c;
+  initial clk = 0;
+  always #5 clk = ~clk;
+  initial begin
+    a = 4'd8;
+    b = 4'd7;
+    c = 4'd6;
+  end
+  always @(posedge clk) begin
+    a <= b;
+    b <= c;
+    c <= a;
+  end
 endmodule
 ```
 ### Testbench for Swapping Three Numbers:
